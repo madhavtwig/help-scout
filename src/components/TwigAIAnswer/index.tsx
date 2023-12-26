@@ -1,4 +1,4 @@
-import { useHelpScoutContext } from "@helpscout/ui-kit";
+import { Heading, Icon, Text, useHelpScoutContext } from "@helpscout/ui-kit";
 import { useEffect } from "react";
 import { LocalStorage } from "../../enum/localStorage";
 import { getSessionStorageOrDefault } from "../../utils/localStorage";
@@ -39,5 +39,22 @@ export default function TwigAIAnswer() {
     }
   }, [user]);
 
-  return <>Twig AI Answer</>;
+  return (
+    <div className="mx-2">
+      <div className="my-2">
+        <div className="flex justify-between items-center">
+          <Heading level="h1">Apps</Heading>
+          <Icon name="refresh" shade="default" state="default" style={{}} />
+        </div>
+        <Text weight="medium">Twig AI 1204</Text>
+      </div>
+      <div className="flex flex-col">
+        <textarea
+          rows={10}
+          cols={50}
+          className="border-2 border-gray-200 rounded-md"
+        />
+      </div>
+    </div>
+  );
 }
