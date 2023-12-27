@@ -22,10 +22,6 @@ import {
   getSessionStorageOrDefault,
   setSessionStorage,
 } from "../../utils/localStorage";
-import {
-  getConversationById,
-  getHelpScoutAccessToken,
-} from "../../apis/helpScout";
 
 export default function TwigAIAnswer() {
   const { user, conversation, mailbox, company, customer } =
