@@ -1,9 +1,6 @@
-import HelpScout, { NOTIFICATION_TYPES } from "@helpscout/javascript-sdk";
 import {
   Button,
-  DefaultStyle,
   Heading,
-  useSetAppHeight,
   Text,
   useHelpScoutContext,
   Accordion,
@@ -126,13 +123,15 @@ export default function TwigAIAnswer() {
 
     try {
       fetch(url, {
+        referrer: "unsafe-url",
         method: "POST",
+        mode: "no-cors",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          apiKey: getSessionStorageOrDefault(LocalStorage.TWIG_API_KEY, ""),
+          apiKey: "050d97a0-ba94-475c-94a7-b11a1c3bb7f9",
           email: user?.email,
         }),
       })
@@ -297,7 +296,11 @@ export default function TwigAIAnswer() {
         brandUrl + "/agent/tickets/" + externalReferenceId;
       let tmpAccessToken: string = "";
 
-      if (!getSessionStorageOrDefault(LocalStorage.ACCESS_TOKEN, null)) {
+      if (
+        !getSessionStorageOrDefault(LocalStorage.ACCESS_TOKEN, null) ||
+        true
+      ) {
+        console.log("heyyyyyyyyyyyyyyyyy");
         tmpAccessToken = await getAccessToken();
         setSessionStorage(LocalStorage.ACCESS_TOKEN, tmpAccessToken);
       } else {
@@ -463,7 +466,7 @@ export default function TwigAIAnswer() {
         </div>
       </div>
 
-      {!!citations.length && (
+      {!citations.length && (
         <div className="my-2">
           <Text weight="medium">Citations</Text>
           <hr className="h-[2px] my-2 bg-gray-800 border-0" />
